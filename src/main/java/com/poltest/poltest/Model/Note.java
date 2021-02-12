@@ -1,29 +1,33 @@
 package com.poltest.poltest.Model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
+@Table(name = "Notes")
 public class Note {
 
-    @Id
-    @GeneratedValue
     private int id;
-
     private String title;
     private String content;
-    private Date initial;
-    private Date modified;
+    private String date_initial;
+    private String date_modified;
     private int versionNumber;
     private boolean visible;
 
-    public Note(String title, String content)
+    public Note(int id, String title, String content)
     {
+        this.id = id;
         this.title = title;
         this.content = content;
         versionNumber = 1;
         visible = true;
     }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getTitle() {
         return title;
@@ -41,20 +45,20 @@ public class Note {
         this.content = content;
     }
 
-    public Date getInitial() {
-        return initial;
+    public String getDate_initial() {
+        return date_initial;
     }
 
-    public void setInitial(Date initial) {
-        this.initial = initial;
+    public void setDate_initial(String date_initial) {
+        this.date_initial = date_initial;
     }
 
-    public Date getModified() {
-        return modified;
+    public String getDate_modified() {
+        return date_modified;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
+    public void setDate_modified(String date_modified) {
+        this.date_modified = date_modified;
     }
 
 }
