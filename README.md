@@ -39,8 +39,8 @@ Back end
 6. For using IntelIJ:
 	6.1 open the project using pom.xml file 
 	6.2 run the PoltestApplication in src/main/java/com/poltest/poltest
-7.Agree to install any required file if the program asks for it 
-8.  The message "Started PoltestApplication in" should be print out in the terminal of the program
+7. Agree to install any required file if the program asks for it 
+8. The message "Started PoltestApplication in" should be print out in the terminal of the program
 
 Front end
 9. Install NodeJS from the website: https://nodejs.org/en/download/
