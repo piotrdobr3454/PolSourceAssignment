@@ -32,15 +32,15 @@ CREATE TABLE Notes
   original int NOT NULL );
 
 Back end
-4. It is recommended to use IntelIJ or Visual Studio Code for back end
-5. For using Visual Studio Code: 
+4.  It is recommended to use IntelIJ or Visual Studio Code for back end
+5.  For using Visual Studio Code: 
 	5.1 open main folder which contains all the data through Visual Studio Code
 	5.2 run the PoltestApplication in src/main/java/com/poltest/poltest
-6. For using IntelIJ:
+6.  For using IntelIJ:
 	6.1 open the project using pom.xml file 
 	6.2 run the PoltestApplication in src/main/java/com/poltest/poltest
-7. Agree to install any required file if the program asks for it 
-8. The message "Started PoltestApplication in" should be print out in the terminal of the program
+7.  Agree to install any required file if the program asks for it 
+8.  The message "Started PoltestApplication in" should be print out in the terminal of the program
 
 Front end
 9. Install NodeJS from the website: https://nodejs.org/en/download/
