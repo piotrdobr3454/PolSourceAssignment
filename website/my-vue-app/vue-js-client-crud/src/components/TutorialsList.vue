@@ -1,18 +1,5 @@
 <template>
   <div class="list row">
-    <div class="col-md-8">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by title"
-          v-model="title"/>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
-            @click="searchTitle"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
     <div class="col-md-6">
       <h4>Notes List</h4>
       <ul class="list-group">
@@ -44,16 +31,47 @@
         </div>
         <div>
           <label><strong>Date_modified:</strong></label> {{ currentNote.date_modified }}
+        <div>
+          <label><strong>Original_id:</strong></label> {{ currentNote.original }}
         </div>
         <div>
-          <label><strong>Version_number:</strong></label> {{ currentNote.version_number }}
+          <label><strong>Version_number:</strong></label> {{ currentNote.version }}
         </div>
         <router-link :to="'/get-notes/' + currentNote.id" class="badge badge-warning">Edit</router-link>
+            {{getPreviousNotes()}}
+            <li v-for="note in previousNotes" :key="note.id">
+              <!-- <button v-on:click="isHidden = true"> click here </button>
+              <button v-on:click="isHidden = !isHidden"> close -->
+              <div>
+              <label><strong>ID:</strong></label> {{ note.id }}
+              </div>
+              <div>
+                <label><strong>Title:</strong></label> {{ note.title }}
+              </div>
+              <div>
+                <label><strong>Content:</strong></label> {{ note.content }}
+              </div>
+              <div>
+                <label><strong>Date_initial:</strong></label> {{ note.date_initial }}
+              </div>
+              <div>
+                <label><strong>Date_modified:</strong></label> {{ note.date_modified }}
+              </div>
+              <div>
+                <label><strong>Original_id:</strong></label> {{ note.original }}
+              </div>
+              <div>
+                <label><strong>Version_number:</strong></label> {{ note.version }}
+              </div>
+            </li>
+          </div>
       </div>
+
       <div v-else>
         <br />
         <p>Please click on a Note</p>
       </div>
+          
     </div>
   </div>
 </template>
@@ -68,7 +86,8 @@ export default {
       notes: [],
       currentNote: null,
       currentIndex: -1,
-      title: ""
+      title: "",
+      previousNotes: []
     };
   },
   methods: {
@@ -83,6 +102,28 @@ export default {
         });
     },
 
+    getPreviousNotes() {
+      TutorialDataService.getPreviousNotes(this.currentNote.original)
+      .then(response => {
+        this.previousNotes = response.data;
+        console.log(response.data);
+      })
+      .catch(e => {
+          console.log(e);
+        });
+    },
+
+    getVersion() {
+      TutorialDataService.getVersion(this.currentNote.id)
+        .then(response => {
+          this.currentNote.version = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },  
+
     refreshList() {
       this.retrieveNotes();
       this.currentNote = null;
@@ -92,17 +133,6 @@ export default {
     setActiveNote(note, index) {
       this.currentNote = note;
       this.currentIndex = index;
-    },
-    
-    searchTitle() {
-      TutorialDataService.findByTitle(this.title)
-        .then(response => {
-          this.notes = response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
     }
   },
   mounted() {

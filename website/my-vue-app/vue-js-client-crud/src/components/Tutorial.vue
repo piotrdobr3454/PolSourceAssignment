@@ -72,25 +72,6 @@ export default {
         });
     },
 
-    // updatePublished(status) {
-    //   var data = {
-    //     id: this.currentNote.id,
-    //     title: this.currentNote.title,
-    //     content: this.currentNote.content,
-    //     
-    //published: status
-    //   };
-
-    //   TutorialDataService.update(this.currentTutorial.id, data)
-    //     .then(response => {
-    //       this.currentTutorial.published = status;
-    //       console.log(response.data);
-    //     })
-    //     .catch(e => {
-    //       console.log(e);
-    //     });
-    // },
-
     updateNote() {
       TutorialDataService.update(this.currentNote.id, this.currentNote)
         .then(response => {

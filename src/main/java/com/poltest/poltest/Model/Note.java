@@ -24,19 +24,23 @@ public class Note {
     private String date_modified;
 
     @Column
-    private int version_number;
+    private String version;
 
     @Column
     private boolean visibility;
 
-    public Note(int id, String title, String content, String date_initial, String date_modified, int version_number)
+    @Column
+    private int original;
+
+    public Note(int id, String title, String content, String date_initial, String date_modified, String version, int original)
     {
         this.id = id;
         this.title = title;
         this.content = content;
         this.date_initial = date_initial;
         this.date_modified = date_modified;
-        this.version_number = version_number;
+        this.version = version;
+        this.original = original;
     }
 
     public Note(int id)
@@ -80,12 +84,12 @@ public class Note {
         this.date_modified = date_modified;
     }
 
-    public int getVersionNumber() {
-        return version_number;
+    public String getVersion() {
+        return version;
     }
 
-    public void setVersionNumber(int version_number) {
-        this.version_number = version_number;
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public boolean isVisible() {
@@ -94,6 +98,14 @@ public class Note {
 
     public void setVisible(boolean visibility) {
         this.visibility = visibility;
+    }
+
+    public int getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(int original) {
+        this.original = original;
     }
 
 }

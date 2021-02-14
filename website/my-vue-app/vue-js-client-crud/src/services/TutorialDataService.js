@@ -8,6 +8,14 @@ class TutorialDataService {
   get(id) {
     return http.get(`/get-notes/${id}`);
   }
+   
+  getVersion(id) {
+    return http.get(`/get-version/${id}`);
+  }
+
+  getPreviousNotes(id) {
+      return http.get(`/get-previous-notes/${id}`);
+  }
 
   create(data) {
     return http.post("/create-new-note", data);
