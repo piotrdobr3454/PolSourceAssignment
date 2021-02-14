@@ -62,6 +62,22 @@ public class NoteController {
         }
     }
 
+    @GetMapping("/get-all-notes")
+    public ResponseEntity<ArrayList<Note>> getAllNodes()
+    {
+        try {
+            ArrayList<Note> notes = new ArrayList<Note>();
+            notes = getAllNotes();
+            if (notes.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(notes, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/get-previous-notes/{id}")
     public ResponseEntity<ArrayList<Note>> getPreviousNodes(@PathVariable("id") int id) {
         ArrayList<Note> previousnotes = new ArrayList<Note>();
@@ -184,6 +200,28 @@ public class NoteController {
         return return_records;
     }
 
+    public static ArrayList<Note> getAllNotes() throws SQLException{
+
+        ArrayList<Note> return_records = new ArrayList<>();
+
+        String sql = "SELECT * FROM Notes";
+        Connection con = getConnectionToSQL();
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while(resultSet.next()) {
+            return_records.add(new Note(resultSet.getInt(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(8)));
+        }
+        con.close();
+        return return_records;
+    }
+
     public static void insertNote(Note note) throws SQLException {
         Date date = new Date();
         String sql = "INSERT INTO Notes (title, content, date_initial, date_modified, version, visibility, original) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -207,6 +245,7 @@ public class NoteController {
         {
             previousID = note.getId();
         }
+        String date_initial = getNoteById(previousID).getDate_initial();
         Integer version = Integer.parseInt(getVersion(note.getId()));
         version = version + 1;
         Date date = new Date();
@@ -216,7 +255,7 @@ public class NoteController {
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, note.getTitle());
         preparedStatement.setString(2, note.getContent());
-        preparedStatement.setString(3, date.toString());
+        preparedStatement.setString(3, date_initial);
         preparedStatement.setString(4, date.toString());
         preparedStatement.setString(5, version.toString());
         preparedStatement.setBoolean(6, true);

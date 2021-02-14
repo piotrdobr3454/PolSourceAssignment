@@ -8,19 +8,29 @@ export default new Router({
   routes: [
     {
       path: "/",
-      alias: "/tutorials",
-      name: "tutorials",
-      component: () => import("./components/TutorialsList")
+      alias: "/notes",
+      name: "notes",
+      component: () => import("./components/NotesList")
     },
     {
       path: "/get-notes/:id",
-      name: "tutorial-details",
-      component: () => import("./components/Tutorial")
+      name: "notes-details",
+      component: () => import("./components/Note")
     },
     {
       path: "/add",
       name: "add",
-      component: () => import("./components/AddTutorial")
+      component: () => import("./components/AddNote")
+    },
+    {
+      path: "/viewhistory/:id",
+      name: "viewhistory",
+      component: () => import("./components/ViewHistory")
+    },
+    {
+      path: "/allnotes",
+      name: "allnotes",
+      component: () => import("./components/AllNotes") 
     }
   ]
 });

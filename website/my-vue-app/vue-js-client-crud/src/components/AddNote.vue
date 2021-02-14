@@ -24,21 +24,21 @@
         />
       </div>
 
-      <button @click="saveTutorial" class="btn btn-success">Submit</button>
+      <button @click="saveNote" class="btn btn-success">Submit</button>
     </div>
 
     <div v-else>
       <h4>You submitted successfully!</h4>
-      <button class="btn btn-success" @click="newTutorial">Add</button>
+      <button class="btn btn-success" @click="newNote">Add</button>
     </div>
   </div>
 </template>
 
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import NoteDataService from "../services/NoteDataService";
 
 export default {
-  name: "add-tutorial",
+  name: "add-note",
   data() {
     return {
       note: {
@@ -50,13 +50,13 @@ export default {
     };
   },
   methods: {
-    saveTutorial() {
+    saveNote() {
       var data = {
         title: this.note.title,
         content: this.note.content
       };
 
-      TutorialDataService.create(data)
+      NoteDataService.create(data)
         .then(response => {
           this.note.id = response.data.id;
           console.log(response.data);
@@ -67,7 +67,7 @@ export default {
         });
     },
     
-    newTutorial() {
+    newNote() {
       this.submitted = false;
       this.note = {};
     }

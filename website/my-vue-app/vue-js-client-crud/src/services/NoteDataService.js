@@ -1,8 +1,12 @@
 import http from "../http-common";
 
-class TutorialDataService {
+class NoteDataService {
   getAll() {
     return http.get("/get-notes");
+  }
+
+  getAllNotes() {
+    return http.get("/get-all-notes");
   }
 
   get(id) {
@@ -30,4 +34,4 @@ class TutorialDataService {
   }
 }
 
-export default new TutorialDataService();
+export default new NoteDataService();

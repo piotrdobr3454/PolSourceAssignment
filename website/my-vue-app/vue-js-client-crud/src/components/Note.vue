@@ -17,18 +17,6 @@
 
     </form>
 
-    <!-- <button class="badge badge-primary mr-2"
-      v-if="currentTutorial.published"
-      @click="updatePublished(false)"
-    >
-      UnPublish
-    </button>
-    <button v-else class="badge badge-primary mr-2"
-      @click="updatePublished(true)"
-    >
-      Publish
-    </button> -->
-
     <button class="badge badge-danger mr-2"
       @click="deleteNote"
     >
@@ -50,7 +38,7 @@
 </template>
 
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import NoteDataService from "../services/NoteDataService";
 
 export default {
   name: "note",
@@ -62,7 +50,7 @@ export default {
   },
   methods: {
     getNote(id) {
-      TutorialDataService.get(id)
+      NoteDataService.get(id)
         .then(response => {
           this.currentNote = response.data;
           console.log(response.data);
@@ -73,7 +61,7 @@ export default {
     },
 
     updateNote() {
-      TutorialDataService.update(this.currentNote.id, this.currentNote)
+      NoteDataService.update(this.currentNote.id, this.currentNote)
         .then(response => {
           console.log(response.data);
           this.message = 'The note was updated successfully!';
@@ -84,7 +72,7 @@ export default {
     },
 
     deleteNote() {
-      TutorialDataService.delete(this.currentNote.id)
+      NoteDataService.delete(this.currentNote.id)
         .then(response => {
           console.log(response.data);
           this.$router.push({ name: "notes" });

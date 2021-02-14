@@ -12,7 +12,7 @@
           {{note.title }}
         </li>
       </ul>
-
+         <router-link :to="'/allnotes'" class="badge badge-warning">View all notes</router-link>
     </div>
     <div class="col-md-6">
       <div v-if="currentNote">
@@ -38,33 +38,8 @@
           <label><strong>Version_number:</strong></label> {{ currentNote.version }}
         </div>
         <router-link :to="'/get-notes/' + currentNote.id" class="badge badge-warning">Edit</router-link>
-            {{getPreviousNotes()}}
-            <li v-for="note in previousNotes" :key="note.id">
-              <!-- <button v-on:click="isHidden = true"> click here </button>
-              <button v-on:click="isHidden = !isHidden"> close -->
-              <div>
-              <label><strong>ID:</strong></label> {{ note.id }}
-              </div>
-              <div>
-                <label><strong>Title:</strong></label> {{ note.title }}
-              </div>
-              <div>
-                <label><strong>Content:</strong></label> {{ note.content }}
-              </div>
-              <div>
-                <label><strong>Date_initial:</strong></label> {{ note.date_initial }}
-              </div>
-              <div>
-                <label><strong>Date_modified:</strong></label> {{ note.date_modified }}
-              </div>
-              <div>
-                <label><strong>Original_id:</strong></label> {{ note.original }}
-              </div>
-              <div>
-                <label><strong>Version_number:</strong></label> {{ note.version }}
-              </div>
-            </li>
-          </div>
+        </div>
+         <router-link :to="'/viewhistory/' + currentNote.id" class="badge badge-warning">View History</router-link>
       </div>
 
       <div v-else>
@@ -77,7 +52,7 @@
 </template>
 
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import NoteDataService from "../services/NoteDataService";
 
 export default {
   name: "notes-list",
@@ -92,7 +67,7 @@ export default {
   },
   methods: {
     retrieveNotes() {
-      TutorialDataService.getAll()
+      NoteDataService.getAll()
         .then(response => {
           this.notes = response.data;
           console.log(response.data);
@@ -102,19 +77,8 @@ export default {
         });
     },
 
-    getPreviousNotes() {
-      TutorialDataService.getPreviousNotes(this.currentNote.original)
-      .then(response => {
-        this.previousNotes = response.data;
-        console.log(response.data);
-      })
-      .catch(e => {
-          console.log(e);
-        });
-    },
-
     getVersion() {
-      TutorialDataService.getVersion(this.currentNote.id)
+      NoteDataService.getVersion(this.currentNote.id)
         .then(response => {
           this.currentNote.version = response.data;
           console.log(response.data);
