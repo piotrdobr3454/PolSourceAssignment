@@ -6,25 +6,44 @@ import javax.persistence.*;
 @Table(name = "Notes")
 public class Note {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int id;
-    private String title;
-    private String content;
-    private String date_initial;
-    private String date_modified;
-    private int versionNumber;
-    private boolean visible;
 
-    public Note(int id, String title, String content)
+    @Column
+    private String title;
+
+    @Column
+    private String content;
+
+    @Column
+    private String date_initial;
+
+    @Column
+    private String date_modified;
+
+    @Column
+    private int version_number;
+
+    @Column
+    private boolean visibility;
+
+    public Note(int id, String title, String content, String date_initial, String date_modified, int version_number)
     {
         this.id = id;
         this.title = title;
         this.content = content;
-        versionNumber = 1;
-        visible = true;
+        this.date_initial = date_initial;
+        this.date_modified = date_modified;
+        this.version_number = version_number;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Note(int id)
+    {
+        this.id = id;
+    }
+
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
@@ -59,6 +78,22 @@ public class Note {
 
     public void setDate_modified(String date_modified) {
         this.date_modified = date_modified;
+    }
+
+    public int getVersionNumber() {
+        return version_number;
+    }
+
+    public void setVersionNumber(int version_number) {
+        this.version_number = version_number;
+    }
+
+    public boolean isVisible() {
+        return visibility;
+    }
+
+    public void setVisible(boolean visibility) {
+        this.visibility = visibility;
     }
 
 }
