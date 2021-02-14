@@ -47,8 +47,7 @@ public class NoteController {
     }
 
     @GetMapping("/get-notes")
-    public ResponseEntity<ArrayList<Note>> getNodes()
-    {
+    public ResponseEntity<ArrayList<Note>> getNodes() {
         try {
             ArrayList<Note> notes = new ArrayList<Note>();
             notes = getNotes();
@@ -63,8 +62,7 @@ public class NoteController {
     }
 
     @GetMapping("/get-all-notes")
-    public ResponseEntity<ArrayList<Note>> getAllNodes()
-    {
+    public ResponseEntity<ArrayList<Note>> getAllNodes() {
         try {
             ArrayList<Note> notes = new ArrayList<Note>();
             notes = getAllNotes();
@@ -119,12 +117,10 @@ public class NoteController {
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.next())
-        {
+        if(resultSet.next()) {
             return resultSet.getString(1);
         }
-        else
-        {
+        else {
             return null;
         }
 
@@ -137,14 +133,12 @@ public class NoteController {
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        if(resultSet.next())
-        {
+        if(resultSet.next()) {
             return new Note(resultSet.getInt(1), resultSet.getString(2),
                     resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
                     resultSet.getInt(8));
         }
-        else
-        {
+        else {
             return null;
         }
     }
@@ -152,8 +146,7 @@ public class NoteController {
     public static ArrayList<Note> getPreviousNotes(int id) throws SQLException {
         ArrayList<Note> return_records = new ArrayList<>();
 
-        if(id == 0)
-        {
+        if(id == 0) {
             return return_records;
         }
         String sql = "SELECT * FROM Notes WHERE original = ? OR (id = ? AND original = 0) ORDER BY version DESC";
@@ -238,11 +231,9 @@ public class NoteController {
         con.close();
     }
 
-
     public static void modifyNote(Note note) throws SQLException {
         int previousID = note.getOriginal();
-        if(previousID == 0)
-        {
+        if(previousID == 0) {
             previousID = note.getId();
         }
         String date_initial = getNoteById(previousID).getDate_initial();
@@ -273,8 +264,7 @@ public class NoteController {
         con.close();
     }
 
-    public static Connection getConnectionToSQL() throws SQLException
-    {
+    public static Connection getConnectionToSQL() throws SQLException {
         Connection con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/poltest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
                 "root",
