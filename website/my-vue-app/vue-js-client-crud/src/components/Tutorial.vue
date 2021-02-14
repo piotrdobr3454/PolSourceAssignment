@@ -77,7 +77,8 @@ export default {
     //     id: this.currentNote.id,
     //     title: this.currentNote.title,
     //     content: this.currentNote.content,
-    //     published: status
+    //     
+    //published: status
     //   };
 
     //   TutorialDataService.update(this.currentTutorial.id, data)
