@@ -1,6 +1,7 @@
 # PolSourceAssignment
 Full-stack Developer Assignment - Piotr Dobrasiewicz
 
+IF you have the problem with incorrect formatting of this file - open it using Notepad.
 If you have any questions related to the assignment, please let me know:
 
 email: piotr.dobrasiewicz567@gmail.com
