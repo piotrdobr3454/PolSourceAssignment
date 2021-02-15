@@ -57,6 +57,10 @@ Front end
 
 14. Set the folder to website\my-vue-app\vue-js-client-crud\src
 
-15. Type: npm run serve  
+15. Type: 
+
+npm install build 
+
+npm run serve  
 
 16. Go to http://localhost:8081/ at the website                                                                                                    
