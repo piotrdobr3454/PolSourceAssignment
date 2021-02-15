@@ -7,6 +7,8 @@ If you have any questions related to the assignment, please let me know:
 email: piotr.dobrasiewicz567@gmail.com
 phone: +48 516 896 261
 
+The program was tested both on Windows and Linux.
+
 How to run a program:
 
 MySQL
@@ -57,6 +59,10 @@ Front end
 
 14. Set the folder to website\my-vue-app\vue-js-client-crud\src
 
-15. Type: npm run serve  
+15. Type: 
+
+npm install build 
+
+npm run serve  
 
 16. Go to http://localhost:8081/ at the website                                                                                                    
