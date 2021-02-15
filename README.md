@@ -33,6 +33,7 @@ CREATE TABLE Notes
   visibility BOOLEAN NOT NULL,
   original int NOT NULL );
 
+
 Back end
 
 Option 1: Open through Maven (Note: Maven must be installed)
@@ -56,6 +57,7 @@ run the PoltestApplication in src/main/java/com/poltest/poltest
 Agree to install any required file if the program asks for it.
 
 The message "Started PoltestApplication in" should be print out in the terminal of the program.
+
 
 Front end
 
