@@ -7,6 +7,8 @@ If you have any questions related to the assignment, please let me know:
 email: piotr.dobrasiewicz567@gmail.com
 phone: +48 516 896 261
 
+The program was tested both on Windows and Linux.
+
 How to run a program:
 
 MySQL
