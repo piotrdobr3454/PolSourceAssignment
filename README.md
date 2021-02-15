@@ -35,34 +35,40 @@ CREATE TABLE Notes
 
 Back end
 
-7. It is recommended to use IntelIJ or Visual Studio Code for back end.
+Option 1: Open through Maven (Note: Maven must be installed)
 
-8. For using Visual Studio Code: 
+Set the directory to the root folder
+
+Type: mvn spring-boot:run
+
+Option 2: Open through IntelIJ or Visual Studio Code
+
+For using Visual Studio Code: 
 
 open main folder which contains all the data through Visual Studio Code,
 run the PoltestApplication in src/main/java/com/poltest/poltest
 
-9. For using IntelIJ:
+For using IntelIJ:
 
-open the project using pom.xml file 
+open the project using pom.xml file, 
 run the PoltestApplication in src/main/java/com/poltest/poltest
 
-10. Agree to install any required file if the program asks for it.
+Agree to install any required file if the program asks for it.
 
-11. The message "Started PoltestApplication in" should be print out in the terminal of the program.
+The message "Started PoltestApplication in" should be print out in the terminal of the program.
 
 Front end
 
-12. Install NodeJS from the website: https://nodejs.org/en/download/
+Install NodeJS from the website: https://nodejs.org/en/download/
 
-13. Open Node.js command prompt
+Open Node.js command prompt
 
-14. Set the folder to website\my-vue-app\vue-js-client-crud\src
+Set the folder to website\my-vue-app\vue-js-client-crud\src
 
-15. Type: 
+Type: 
 
 npm install build 
 
 npm run serve  
 
-16. Go to http://localhost:8081/ at the website                                                                                                    
+Go to http://localhost:8081/ at the website                                                                                                    
